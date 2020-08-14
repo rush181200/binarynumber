@@ -5,6 +5,7 @@ import 'package:binarynumbers/widgets/colorss.dart';
 import 'package:binarynumbers/widgets/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 void main() {
   runApp(MyApp());
@@ -56,14 +57,34 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<bool> _check() async {
-    await Future.delayed(Duration(milliseconds: 4000));
+    await Future.delayed(Duration(milliseconds: 5000));
     return true;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(child: Center(child: Text('Binary Numbers'))),
+      body: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.bottomRight,
+                  end: Alignment.topLeft,
+                  colors: [
+                Theme.of(context).primaryColor.withOpacity(0.9),
+                Theme.of(context).primaryColor.withOpacity(0.9),
+                Theme.of(context).primaryColor
+              ])),
+          child: Center(
+              child: Shimmer.fromColors(
+                  baseColor: Colors.grey[300],
+                  highlightColor: Colors.red,
+                  child: Text(
+                    'Binary Numbers',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )))),
     );
   }
 }

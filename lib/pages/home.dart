@@ -185,7 +185,7 @@ class _Home1State extends State<Home1> {
                       ]),
                 ),
                 Container(
-                  height: height + 200,
+                  height: height * 1.7,
                   width: width,
                   child: Container(
                     child: TabBarView(children: [

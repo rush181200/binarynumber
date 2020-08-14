@@ -32,7 +32,7 @@ class _ShowsPageState extends State<ShowsPage> {
         children: [
           Container(
             child: Text(
-              'New',
+              'NEW',
               style:
                   TextStyle(color: Theme.of(context).accentColor, fontSize: 30),
             ),
@@ -95,7 +95,7 @@ class _ShowsPageState extends State<ShowsPage> {
           //---------------------------------------------------------------------
           Container(
             child: Text(
-              'Popular',
+              'POPULAR',
               style:
                   TextStyle(color: Theme.of(context).accentColor, fontSize: 30),
             ),
@@ -153,7 +153,69 @@ class _ShowsPageState extends State<ShowsPage> {
                         )),
                   );
                 }),
-          )
+          ),
+          //--------------------------------------------------------------
+          Container(
+            child: Text(
+              'TRENDING LIST',
+              style:
+                  TextStyle(color: Theme.of(context).accentColor, fontSize: 30),
+            ),
+          ),
+          Container(
+            height: height * 0.5,
+            width: width,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: mp.searchlist.length,
+                itemBuilder: (context, i) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => ShowDetails(
+                                imdbid: mp.searchlist[i].imdbid,
+                              )));
+                    },
+                    child: Container(
+                        margin: EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: height * 0.39,
+                              width: width * 0.4,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Theme.of(context).disabledColor,
+                                  image: DecorationImage(
+                                      image:
+                                          NetworkImage(mp.searchlist[i].poster),
+                                      fit: BoxFit.fill)),
+                            ),
+                            Transform.translate(
+                              offset: Offset(0, -35),
+                              child: Container(
+                                  child: Container(
+                                height: height * 0.08,
+                                width: width * 0.2,
+                                decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Center(
+                                  child: Text(
+                                    'TOP 5',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context).accentColor),
+                                  ),
+                                ),
+                              )),
+                            )
+                          ],
+                        )),
+                  );
+                }),
+          ),
         ],
       ),
     );

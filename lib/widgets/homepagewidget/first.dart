@@ -11,6 +11,7 @@ class _FirstState extends State<First> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return Container(
+      margin: EdgeInsets.only(top: 2),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +31,7 @@ class _FirstState extends State<First> {
                 width: width * 0.04,
               ),
               Text(
-                'Chelsie brett',
+                'Rushabh Mehta',
                 style: TextStyle(
                     color: Theme.of(context).accentColor, fontSize: 18),
               ),
