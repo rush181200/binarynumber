@@ -17,6 +17,7 @@ class Api extends Baseapi {
   BaseUrl url = BaseUrl();
 
   @override
+  // ignore: missing_return
   Future<Search> search(BuildContext context) async {
     final show = Provider.of<MovieProvider>(context);
     var response = await retry(

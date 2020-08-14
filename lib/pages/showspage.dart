@@ -1,5 +1,4 @@
 import 'package:binarynumbers/api/api.dart';
-import 'package:binarynumbers/models/searchdata.dart';
 import 'package:binarynumbers/pages/showdetails.dart';
 import 'package:binarynumbers/provider/movieprovider.dart';
 import 'package:flutter/material.dart';
