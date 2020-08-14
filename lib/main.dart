@@ -38,13 +38,23 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
   final Connect c = Connect();
-
+  Animation<double> animation;
+  AnimationController animationController;
   @override
   void initState() {
     super.initState();
 
+    animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 3));
+    animation =
+        Tween<double>(begin: 300, end: -100).animate(animationController)
+          ..addListener(() {
+            setState(() {});
+          });
+    animationController.forward();
     _check().then((value) => s());
   }
 
@@ -74,17 +84,39 @@ class _SplashScreenState extends State<SplashScreen> {
                 Theme.of(context).primaryColor.withOpacity(0.9),
                 Theme.of(context).primaryColor
               ])),
-          child: Center(
-              child: Shimmer.fromColors(
-                  baseColor: Colors.grey[300],
-                  highlightColor: Colors.red,
-                  child: Text(
-                    'Binary Numbers',
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  child: Transform.translate(
+                    offset: Offset(0, animation.value),
+                    child: Container(
+                      margin: EdgeInsets.only(left: 60, right: 60),
+                      height: 300,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).highlightColor,
+                          borderRadius: BorderRadius.circular(50)),
+                      child: Center(
+                        child: Shimmer.fromColors(
+                            baseColor: Colors.grey[300],
+                            highlightColor: Colors.red,
+                            child: Text(
+                              'Binary Numbers',
+                              style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                      ),
                     ),
-                  )))),
+                  ),
+                )
+              ],
+            ),
+          )),
     );
   }
 }
